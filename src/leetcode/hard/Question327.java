@@ -14,15 +14,18 @@ package leetcode.hard;
  */
 public class Question327 {
     public static void main(String[] args) {
-        int[] array = {-2147483647,0,-2147483647,2147483647};
-        int up = 3864;
-        int lower = -564;
+        long[] array = {6, 1, 0, 1 ,-4, 1};
+        int up = -2;
+        int lower = -6;
         long[] preArray = preSum(array);
         for (long value : preArray) {
             System.out.print(value + " ");
         }
         System.out.println();
         int sum = grouping(preArray, 0, preArray.length - 1, up, lower);
+        int s = loop(array, up, lower);
+        System.out.println(s);
+        System.out.println(s == sum);
         for (long value : preArray) {
             System.out.print(value + " ");
         }
@@ -31,7 +34,24 @@ public class Question327 {
 
     }
 
-    public static long[] preSum(int[] array) {
+    public static int loop(long[] array, int up, int lower) {
+        int sums = 0;
+        for (int j = 0;j < array.length;j++) {
+            int s = 0;
+/*            if (array[j] <= up && array[j] >= lower) {
+                sums += 1;
+            }*/
+            for (int k = j;k < array.length;k++) {
+                s += array[k];
+                if (s <= up && s >= lower) {
+                    sums += 1;
+                }
+            }
+        }
+        return sums;
+    }
+
+    public static long[] preSum(long[] array) {
         long[] preArray = new long[array.length];
         preArray[0] = array[0];
         for (int i = 1;i < array.length;i++) {
