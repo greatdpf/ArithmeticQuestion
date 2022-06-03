@@ -42,6 +42,12 @@ public class Question237Test {
         }
     }
 
+    /**
+     *
+     * @param maxLength
+     * @param maxValue
+     * @return
+     */
     public static int[] generateArray(int maxLength, int maxValue) {
         int length = (int)(Math.random() * maxLength + 1);
         int[] array = new int[length];
